@@ -27,6 +27,7 @@ class dbInteraction:
             conn.close()
         except:
             print('Error closing connection')
+# Get animal function gets the animal name and description from animals table in DB
 
     def get_animals(self):
         animals = []
@@ -42,6 +43,7 @@ class dbInteraction:
         self.db_disconnect(conn, cursor)
 
         return animals
+# Add animal runs an INSERT query to insert animal into DB, using the args passed to it through prepared statment.
 
     def add_animal(self, animal_name, animal_desc):
         conn, cursor = self.db_connect()
@@ -55,6 +57,7 @@ class dbInteraction:
             print('Error running DB query')
         conn.commit()
         self.db_disconnect(conn, cursor)
+# Change animal runs an UPDATE query to update an animal in the DB, using the args passed to it through prepared statment.
 
     def change_animal(self, animal_name, new_name, new_description):
         conn, cursor = self.db_connect()
@@ -67,6 +70,7 @@ class dbInteraction:
             print('Error running DB query')
         conn.commit()
         self.db_disconnect(conn, cursor)
+# Delete animal runs an DELETE query to delete an animal from the DB, using the arg passed to it through prepared statment.
 
     def delete_animal(self, animal_name):
         conn, cursor = self.db_connect()

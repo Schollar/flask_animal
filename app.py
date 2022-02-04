@@ -13,6 +13,8 @@ def animals():
     animals_json = json.dumps(animals_list, default=str)
     return Response(animals_json, mimetype="application/json", status=200)
 
+# POST request that takes in data with the request.json, then send the data to our db handler add animal function
+
 
 @app.post('/animals')
 def add_animal():
@@ -20,6 +22,8 @@ def add_animal():
     animal_desc = request.json['description']
     db.add_animal(animal_name, animal_desc)
     return Response("You've successfully added an animal", mimetype="plain/text", status=200)
+
+# PATCH request that takes in animal name, new name, and new description data with the request.json, then send the data to our db handler changeanimal function
 
 
 @app.patch('/animals')
@@ -29,6 +33,8 @@ def change_animal():
     new_description = request.json['description']
     db.change_animal(animal_name, new_name, new_description)
     return Response("You've successfully changed an animal", mimetype="plain/text", status=200)
+
+# DELETE request that takes in animal name with the request.json, then send the data to our db handler delete animal function
 
 
 @app.delete('/animals')
