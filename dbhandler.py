@@ -57,6 +57,7 @@ class dbInteraction:
             print('Error running DB query')
         conn.commit()
         self.db_disconnect(conn, cursor)
+        return True
 # Change animal runs an UPDATE query to update an animal in the DB, using the args passed to it through prepared statment.
 
     def change_animal(self, animal_name, new_name, new_description):
@@ -66,10 +67,12 @@ class dbInteraction:
                 "UPDATE animals SET name = ?, description = ? WHERE name = ?", [new_name, new_description, animal_name])
         except db.OperationalError:
             print('Something is wrong with the db!')
+            return False
         except db.ProgrammingError:
             print('Error running DB query')
         conn.commit()
         self.db_disconnect(conn, cursor)
+        return True
 # Delete animal runs an DELETE query to delete an animal from the DB, using the arg passed to it through prepared statment.
 
     def delete_animal(self, animal_name):
@@ -83,3 +86,4 @@ class dbInteraction:
             print('Error running DB query')
         conn.commit()
         self.db_disconnect(conn, cursor)
+        return True
